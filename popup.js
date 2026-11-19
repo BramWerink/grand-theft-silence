@@ -6,6 +6,7 @@ let state = { enabled: true, mode: "hide" };
 
 function render() {
   document.body.dataset.on = String(state.enabled);
+  document.body.dataset.mode = state.mode;
   toggle.setAttribute("aria-checked", String(state.enabled));
   modeButtons.forEach((b) =>
     b.setAttribute("aria-pressed", String(state.enabled && b.dataset.mode === state.mode))
@@ -28,7 +29,7 @@ toggle.addEventListener("click", () => {
   render();
 });
 
-// Picking a mode also turns the filter on, as in the concept.
+// Picking a mode also turns the filter on.
 modeButtons.forEach((b) =>
   b.addEventListener("click", () => {
     state.mode = b.dataset.mode;
