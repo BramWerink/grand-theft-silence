@@ -1,34 +1,39 @@
 const toggle = document.getElementById("toggle");
 const status = document.getElementById("status");
-const modes = document.getElementById("modes");
-const radios = document.querySelectorAll('input[name="mode"]');
-
-function render({ enabled, mode }) {
-  toggle.checked = enabled;
-  radios.forEach((r) => {
-    r.checked = r.value === mode;
-    r.disabled = !enabled;
-  });
-  modes.classList.toggle("off", !enabled);
-  status.textContent = enabled
-    ? mode === "blur" ? "Active: matches are blurred." : "Active: matches are hidden."
-    : "Paused. Everything is shown.";
-}
+const modeButtons = document.querySelectorAll("[data-mode]");
 
 let state = { enabled: true, mode: "hide" };
-chrome.storage.local.get(state, (s) => render((state = s)));
 
-toggle.addEventListener("change", () => {
-  state.enabled = toggle.checked;
-  chrome.storage.local.set({ enabled: state.enabled });
-  render(state);
+function render() {
+  document.body.dataset.on = String(state.enabled);
+  toggle.setAttribute("aria-checked", String(state.enabled));
+  modeButtons.forEach((b) =>
+    b.setAttribute("aria-pressed", String(state.enabled && b.dataset.mode === state.mode))
+  );
+  status.textContent = !state.enabled
+    ? "Paused. Everything is shown."
+    : state.mode === "hide"
+      ? "Active. GTA 6 posts are hidden."
+      : "Active. GTA 6 posts are blurred; hover to peek.";
+}
+
+chrome.storage.local.get(state, (saved) => {
+  state = saved;
+  render();
 });
 
-radios.forEach((r) =>
-  r.addEventListener("change", () => {
-    if (!r.checked) return;
-    state.mode = r.value;
-    chrome.storage.local.set({ mode: state.mode });
-    render(state);
+toggle.addEventListener("click", () => {
+  state.enabled = !state.enabled;
+  chrome.storage.local.set({ enabled: state.enabled });
+  render();
+});
+
+// Picking a mode also turns the filter on, as in the concept.
+modeButtons.forEach((b) =>
+  b.addEventListener("click", () => {
+    state.mode = b.dataset.mode;
+    state.enabled = true;
+    chrome.storage.local.set({ mode: state.mode, enabled: true });
+    render();
   })
 );
