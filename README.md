@@ -18,6 +18,22 @@ Click the extension icon to:
 - turn the filter on or off
 - choose **Hide** (removes matches) or **Blur** (blurs matches, hover to peek)
 
+## Examples
+YouTube's home feed with the filter off, set to Hide, and set to Blur. The GTA 6
+video is the first thumbnail. The Grand Theft Auto IV video and the rest are left alone.
+
+**Off**
+
+<img src="screenshots/example-off.jpg" alt="YouTube home feed with the filter off, showing a GTA 6 video" width="100%">
+
+**Hide**
+
+<img src="screenshots/example-hide.jpg" alt="YouTube home feed with Hide on, the GTA 6 video removed" width="100%">
+
+**Blur**
+
+<img src="screenshots/example-blur.jpg" alt="YouTube home feed with Blur on, the GTA 6 thumbnail blurred" width="100%">
+
 ## Customise
 - Edit `PATTERN` in `content.js` to change what is matched.
 - Edit `CONTAINERS` in `content.js` to control how much is hidden around a match.
