@@ -1,6 +1,6 @@
 const toggle = document.getElementById("toggle");
 const status = document.getElementById("status");
-const modeButtons = document.querySelectorAll("[data-mode]");
+const modeButtons = document.querySelectorAll("button[data-mode]");
 
 let state = { enabled: true, mode: "hide" };
 
