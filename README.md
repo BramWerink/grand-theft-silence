@@ -3,9 +3,13 @@
 Browser extension (Chrome / Edge / Brave, Manifest V3) that hides or blurs
 anything mentioning GTA 6, GTA6, GTA-6, GTA VI, GTA six, or Grand Theft Auto 6/VI/six.
 
-<p align="center">
-  <img src="screenshots/popup.png" alt="Grand Theft Silence popup with an on/off switch and Hide / Blur options" width="320">
-</p>
+<table align="center">
+  <tr>
+    <td align="center"><img src="screenshots/popup-off.png" alt="Popup with the filter off" width="260"><br><b>Off</b></td>
+    <td align="center"><img src="screenshots/popup-hide.png" alt="Popup in Hide mode" width="260"><br><b>Hide</b></td>
+    <td align="center"><img src="screenshots/popup-blur.png" alt="Popup in Blur mode" width="260"><br><b>Blur</b></td>
+  </tr>
+</table>
 
 ## Install (unpacked)
 1. Open `chrome://extensions` (or `edge://extensions`).
